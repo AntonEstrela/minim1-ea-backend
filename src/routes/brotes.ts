@@ -36,9 +36,29 @@ router.post('/', async (req, res) => {
 //DELETE
 router.delete('/:broteId', async (req, res) => {
     try {
-        const removedBrote = await Brote.remove({_id: req.params.broteId});
+        const removedBrote = await Brote.deleteOne({nombre: req.params.broteId});
         res.json(removedBrote);
     } catch(err) {
+        res.json({race: err});
+    }
+});
+
+//PUT(update)
+router.put('/', async (req, res) => {
+    const brote = new Brote({
+        nombre: req.body.nombre,
+        descripcion: req.body.descripcion,
+        fechainicio: req.body.fechainicio,
+        fechafinal: req.body.fechafinal
+    });
+    try {
+        const removedBrote = await Brote.deleteOne({nombre: req.body.nombre});
+        console.log(removedBrote);
+        const savedBrote = await brote.save();
+        res.json(savedBrote);
+        console.log(savedBrote);
+    }
+    catch(err) {
         res.json({race: err});
     }
 });
