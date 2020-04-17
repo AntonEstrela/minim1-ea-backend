@@ -5,9 +5,6 @@ import cors from 'cors';
 require('dotenv').config();
 const app: express.Application = express();
 //Import Routes
-const studentsRoute = require('./routes/students');
-const subjectsRoute = require('./routes/subjects');
-const phonesRoute = require('./routes/phones');
 const brotesRoute = require('./routes/brotes');
 
 
@@ -16,9 +13,6 @@ const PORT = 8080;
 // Middlewares
 app.use(cors());
 app.use(bodyParser.json());
-app.use('/api/students', studentsRoute);
-app.use('/api/subjects', subjectsRoute);
-app.use('/api/phones', phonesRoute);
 app.use('/api/brotes', brotesRoute);
 
 
